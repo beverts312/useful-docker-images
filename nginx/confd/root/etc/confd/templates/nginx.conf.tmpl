@@ -1,0 +1,26 @@
+daemon off;
+error_log  /var/log/error.log warn;
+
+
+events {
+        worker_connections 1024;
+}
+
+http {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    
+    upstream myservice {
+        {{ range getvs "/<%ETCD_APP%>/*" }}
+            server {{ . }};
+        {{ end }}
+    }
+
+    server {
+        listen 80;
+        
+        location / {
+          proxy_pass http://myservice;
+        }
+    }
+}

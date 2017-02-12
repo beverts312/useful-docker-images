@@ -1,0 +1,13 @@
+nginx:
+  image: beverts312/consul-nginx
+  restart: always
+  ports:
+    - "80:80"
+  environment:
+    - APP=whatismyip
+    - CONSUL_SOCKET=${CONSUL_SOCKET}
+app:
+  image: beverts312/whatismyip
+  restart: always
+  ports:
+    - "3000"

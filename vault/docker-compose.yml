@@ -1,0 +1,7 @@
+vault:
+  image: beverts312/vault
+  cap_add:
+    - IPC_LOCK
+  ports:
+    - "8200:8200"
+  hostname: 192.168.99.100

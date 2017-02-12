@@ -1,0 +1,12 @@
+etcd:
+  image: beverts312/etcd
+  restart: always
+  volumes:
+    - /etcd/data:/data
+  ports:
+    - "2379:2379"
+    - "2380:2380" 
+  environment:
+    - NAME=${NAME}
+    - IP=${IP}
+    - INIT_CLUSTER=${NAME}="http://${IP}:2380,${NAME_TWO}=http://${IP_TWO}:2380,${NAME_THREE}=http://${IP_THREE}:2380"

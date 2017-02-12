@@ -1,0 +1,6 @@
+[template]
+src = "nginx.conf.tmpl"
+dest = "/etc/nginx/nginx.conf"
+keys = [ "<%ETCD_APP%>"]
+check_cmd = "exec nginx -t"
+reload_cmd = "exec nginx -s reload"

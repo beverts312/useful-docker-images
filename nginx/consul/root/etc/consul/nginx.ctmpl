@@ -1,0 +1,21 @@
+daemon off;
+
+events {
+        worker_connections 1024;
+}
+
+http {
+    upstream myservice {
+      {{range service (env "APP") }}
+        server {{.Address}}:{{.Port}};
+      {{ end }}
+    }
+
+    server {
+        listen 80;
+        
+        location / {
+          proxy_pass http://myservice;
+        }
+    }
+}

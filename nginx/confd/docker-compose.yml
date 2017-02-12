@@ -1,0 +1,13 @@
+nginx:
+  image: beverts312/confd-nginx
+  restart: always
+  ports:
+    - "80:80"
+  environment:
+    - ETCD_APP=whatismyip
+    - ETCD_SOCKET=${ETCD_SOCKET}
+app:
+  image: beverts312/whatismyip
+  restart: always
+  ports:
+    - "3000"

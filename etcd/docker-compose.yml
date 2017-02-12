@@ -1,0 +1,11 @@
+etcd:
+  image: beverts312/etcd
+  restart: always
+  volumes:
+    - /etcd/data:/data
+  ports:
+    - "2379:2379"
+    - "2380:2380" 
+  environment:
+    - IP=${IP}
+    - DISCOVERY_URL=${DISCOVERY_URL}
